@@ -6,4 +6,4 @@ export default function ManageEmployee(){
             <h1>Manage Employee</h1>
         </div>
     )
-}
+}   
