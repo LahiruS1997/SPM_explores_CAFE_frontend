@@ -13,3 +13,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.mainPages{
+  padding-left: 310px;
+  margin-right: 16px;
+}
+/*--------------------- Dashboard-manager --------------------------*/
+@import url("./Components/Manager/dashboard/dashboard.css");
+
+/*--------------------- Employee management-manager --------------------------*/
+@import url("./Components/Manager/employees/employee.css");
+
+/*--------------------- Add new Category-manager --------------------------*/
+@import url("./Components/Manager/category/createCategory/CreateCategory.css");
+
+/*--------------------- Loading --------------------------*/
+@import url("./Components/utils/loading/loading.css");
+
+/*--------------------- Login --------------------------*/
+@import url("./Components/utils/auth/login.css");

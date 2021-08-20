@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import styled from 'styled-components'
+import { GlobalState } from '../../../GlobalState'
 import {Link} from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
-import * as AiIcons from 'react-icons/ai'
 import {SidebarData} from './SidebarData'
 import SubMenu from './SubMenu'
+//import axios from 'axios'
 
 const Nav = styled.div`
     background: #15171c;
@@ -41,10 +42,26 @@ const SidebarWrap = styled.div`
     width: 100%;
 `;
 
-function SideBar() {
+export default function SideBar() {
+    const state = useContext(GlobalState)
+    const [isLogged] = state.userAPI.isLogged
+    //const [isManager] = state.employeeAPI.isManager
+
     const [sidebar, setSidebar] = useState(true)
 
     const showSidebar = () => setSidebar(!sidebar)
+
+    const notLoggedRouter = () => {
+        return (
+            <>
+                <div style={{paddingTop: "20px"}}> 
+                    {SidebarData.map((item, index) => {
+                    return <SubMenu item={item} key={index} />;
+                    })}
+                </div>
+            </>
+        )
+    }
 
     return (
         <>
@@ -59,15 +76,15 @@ function SideBar() {
                 <NavIcon to="/" style={{color: "white", textDecoration: "none"}}>
                     Explores CAFE
                 </NavIcon>
-                <div style={{paddingTop: "20px"}}> 
-                    {SidebarData.map((item, index) => {
-                        return <SubMenu item={item} key={index} />;
-                    })}
-                </div>
+                {!isLogged &&
+                    <Link to="/login"><button>Login</button></Link>
+                }
+                {isLogged && notLoggedRouter()}
+                
             </SidebarWrap>
         </SideBarNav>
         </>
     )
 }
 
-export default SideBar
+

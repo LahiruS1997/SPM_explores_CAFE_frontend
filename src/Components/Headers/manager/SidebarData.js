@@ -43,7 +43,7 @@ export const SidebarData = [
             },
             {
                 title: 'Add Category',
-                path: '/employee/manage_emp',
+                path: '/category/addNewCategory',
                 icon: <IoIcons5.IoFastFood />,
             },
             {

@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SideBar from './Components/Headers/manager/SideBar'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 import Pages from './Components/Pages';
+import './index.css'
+import { DataProvider } from './GlobalState'
 
 function App() {
+
   return (
-    <Router>
-      <div className="App">
-        <SideBar />
-        <Pages />
-      </div>
-    </Router>
+    <DataProvider>
+      <Router>
+        <div className="App">
+          <SideBar />
+          <div className="mainPages">
+            <Pages />
+          </div>
+        </div>
+      </Router>
+    </DataProvider>
   );
 } 
       
