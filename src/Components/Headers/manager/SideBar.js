@@ -76,10 +76,10 @@ export default function SideBar() {
                 <NavIcon to="/" style={{color: "white", textDecoration: "none"}}>
                     Explores CAFE
                 </NavIcon>
-                {!isLogged &&
+                {isLogged &&
                     <Link to="/login"><button>Login</button></Link>
                 }
-                {isLogged && notLoggedRouter()}
+                {!isLogged && notLoggedRouter()}
                 
             </SidebarWrap>
         </SideBarNav>

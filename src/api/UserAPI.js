@@ -2,22 +2,32 @@ import {useEffect, useState} from 'react'
 import axios from 'axios'
 
 export default function UserAPI(token){
+    const [usersList, setUsersList] = useState([])
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
     const [callback] = useState(false)
 
+    const getUsersInformations = async () => {
+        const res = await axios.get('http://localhost:5000/user/getUser')
+        //setUsersList(res.data)
+        setUsersList(res.data)
+    }
+    useEffect(() => {
+        getUsersInformations()
+    },  [callback])
+
     useEffect(() => {
         if(token){
             const getUser = async () => {
                 try {
-                    const res= await axios.get('/user/infor', {
+                    const res= await axios.get('http://localhost:5000/user/infor', {
                         headers: {Authorization: token}
                     })
 
                     setIsLogged(true)
-                    res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
+                    res.data.role === 4 ? setIsAdmin(true) : setIsAdmin(false)
 
                     setCart(res.data.cart)
 
@@ -41,28 +51,10 @@ export default function UserAPI(token){
         }
     }, [token, callback])
 
-    const addCart = async (product) => {
-        if(!isLogged) return alert("Please login to continue buying")
-
-        const check = cart.every(item => {
-            return item._id !== product._id
-        })
-
-        if(check){
-            setCart([...cart, {...product, quantity: 1}])
-
-            await axios.patch('/user/addcart', {cart: [...cart, {...product, quantity: 1}]}, {
-                headers: {Authorization: token}
-            })
-        }else{
-            alert("Thiss product already added to the cart")
-        }
-    }
-
     return {
         isLogged: [isLogged, setIsLogged],
         isAdmin: [isAdmin, setIsAdmin],
-        cart: [cart, setCart],
-        addCart: addCart
+        usersList: [usersList, setUsersList],
+        cart: [cart, setCart]
     }
 }

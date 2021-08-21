@@ -19,7 +19,7 @@ function Login(){
 
             localStorage.setItem('firstLogin', true)
             
-            window.location.href = "/";
+            window.location.href = "/dashboard_manager";
         } catch (err) {
             alert(err.response.data.msg)
         }

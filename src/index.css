@@ -31,3 +31,9 @@ code {
 
 /*--------------------- Login --------------------------*/
 @import url("./Components/utils/auth/login.css");
+
+/*--------------------- view Category List --------------------------*/
+@import url("./Components/Manager/category/viewCategory/viewCategory.css");
+
+/*--------------------- view Emp List --------------------------*/
+@import url("./Components/Manager/employees/ManageUser.css");

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import SideBar from './Components/Headers/manager/SideBar'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Pages from './Components/Pages';

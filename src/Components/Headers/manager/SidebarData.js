@@ -9,7 +9,7 @@ import * as BsIcons from 'react-icons/bs'
 export const SidebarData = [
     {
         title: 'Dashboard',
-        path: '/',
+        path: '/dashboard_manager',
         icon: <RiIcons.RiDashboardLine />
     },
     {
@@ -48,7 +48,7 @@ export const SidebarData = [
             },
             {
                 title: 'Category List',
-                path: '/employee/add_employee',
+                path: '/category/category_list',
                 icon: <IoIcons5.IoFastFood />,
             },
         ]

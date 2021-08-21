@@ -8,7 +8,7 @@ export default function EmployeeAPI(token){
     const [isManager, setIsManager] = useState(false)
     const [isCashier, setIsCashier] = useState(false)
     
-    const [history, setHistory] = useState([])
+    const [ setHistory] = useState([])
     const [callback] = useState(false)
 
     useEffect(() => {
