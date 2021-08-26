@@ -1,0 +1,61 @@
+.sectionStyle{
+    margin-top: 20px;
+    height: 400px;
+}
+.reg-page{
+    max-width: 500px;
+    height: 500px;
+    border: 5px solid red;
+    border-radius: 5px;
+    padding:30px;
+    margin:50px auto;
+    margin-left: 620px;
+    margin-top: 100px;
+    background-color: rgb(32, 32, 32);
+    background-image: -moz-linear-gradient();
+}
+
+.reg-page h2{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color:red;
+}
+.list{
+    max-width: 300px;
+    border: 2px solid rgb(4, 155, 245);
+    border-radius: 3px;
+    padding:20px;
+    margin:30px auto;
+
+}
+.reg-page form input,
+.reg-page form button{
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+    padding: 0 5px;
+    outline: red;
+    border:saddlebrown;
+}
+.reg-page form .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reg-page form button{
+    width: 150px;
+    background: red;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 45px;
+}
+.reg-page form a{
+    color: red;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 46px;
+    text-decoration: none;
+
+}
