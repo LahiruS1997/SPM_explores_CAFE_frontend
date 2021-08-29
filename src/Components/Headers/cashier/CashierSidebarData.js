@@ -7,8 +7,13 @@ import * as BsIcons from 'react-icons/bs'
 export const CashierSidebarData = [
     {
         title: 'Dashboard',
-        path: '/dashboard_cashier',
+        path: '/',
         icon: <RiIcons.RiDashboardLine />
+    },
+    {
+        title: 'Category',
+        path: '/cashierCategory',
+        icon: <IoIcons5.IoFastFood />
     },
     {
         title: 'Orders',
@@ -35,6 +40,20 @@ export const CashierSidebarData = [
     {
         title: 'Reports',
         path: '/reports',
-        icon: <IoIcons.IoIosPaper />
+        icon: <IoIcons.IoIosPaper />,
+        iconClosed: <RiIcons.RiArrowDownSFill />,
+        iconOpened: <RiIcons.RiArrowUpSFill />,
+        subNav: [
+            {
+                title: 'New Entry',
+                path: '/create-report',
+                icon: <IoIcons.IoIosPaper />,
+            },
+            {
+                title: 'Submitted Reports',
+                path: '/submit-reports',
+                icon: <IoIcons.IoIosPaper />,
+            },
+        ]
     }
 ]

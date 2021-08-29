@@ -32,7 +32,7 @@ const DropdownLink = styled(Link)`
     font-size: 18px;
 
     &:hover {
-        background: #632ce4;
+        background: #022636;
         cursor: pointer;
     }
 `;
@@ -48,7 +48,7 @@ export default function CashierSubMenu({item}){
 
     return (
         <>
-        <IconContext.Provider value={{ color: 'white'}}>
+        <IconContext.Provider value={{ color: 'blue'}}>
             <SidebarLink to={item.path} onClick={item.subNav && 
                 showSubnav}>
                 <div>
