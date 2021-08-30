@@ -9,7 +9,8 @@ const styles = {
     outer: {
       borderRadius: 5,
       boxShadow: "0 10px 30px #BBB",
-      padding: 10,
+      padding: '40px 60px',
+      width:'90%'
     },
   };
 
@@ -55,7 +56,9 @@ export default function AddEmployee(){
             <div>
             <div style={styles.outer} className="form_emp">
             <form onSubmit={registerSubmit}>
-                    <Grid container spacing={2} direction="row" style={{textAlign:'center', paddingTop: '50px', border: '2px solid black'}}>
+                <h2 style={{fontSize:'30px', fontFamily:'Herculanum'}} >Form</h2><br/>
+                    <Grid container spacing={2} direction="row" className="addEmpForm" style={{textAlign:'center', 
+                        paddingTop: '20px'}}>
                         <Grid item sm={4} xs={12}>
                             <div>Full Name</div>
                             <input type="text" placeholder="Full Name" name="name" 

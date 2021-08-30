@@ -17,7 +17,7 @@ export default function ManageEmployee(){
             <hr />
             
             <div className="emp-manage-page">
-                <h4>There are {users.length} of Employees</h4>
+                <h4>There are {users.length} Employees</h4>
                 <table>
                     <thead>
                         <tr>

@@ -1,7 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
-function CategoryItem({category}) {
+function CategoryItem({category, callBack, setCallBack}) {
+    const deleteCategory = async () => {
+        try {
+            const destroyImg = axios.post('http://localhost:5000/api/destroy', {public_id: category.images.public_id})
+
+            const deleteCategory = axios.delete(`http://localhost:5000/api/category/${category._id}`)
+
+            await destroyImg
+            await deleteCategory
+            setCallBack(!callBack)
+        } catch (err) {
+            alert(err.responce.data.msg)
+        }
+    }
+
     return (
         <div className="category_card">
             <img src={category.images.url} alt="" />
@@ -15,7 +30,7 @@ function CategoryItem({category}) {
                 <Link id="btn_buy" to={`category_detail/${category._id}`} >
                     Edit
                 </Link>
-                <Link to="#" id="btn_view">Remove</Link>
+                <Link to="#" onClick={deleteCategory} id="btn_view">Remove</Link>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 .category_card{
     max-width: 300px;
+    min-width: 300px;
     overflow: hidden;
     height: 500px;
     padding: 15px;

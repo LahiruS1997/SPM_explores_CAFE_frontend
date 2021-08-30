@@ -1,8 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import * as IoIcons5 from 'react-icons/io5'
 import Loading from '../../../utils/loading/Loading'
 import './CreateCategory.css'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { GlobalState } from '../../../../GlobalState'
+
 
 const initialState = {
     category_id: '',
@@ -13,11 +16,30 @@ const initialState = {
 
 export default function CreateCategory(){
 
-    
-
+    const state = useContext(GlobalState)
     const [category, setCategory] = useState(initialState)
+    const [categorys, setCategorys] = state.categoryAPI.category
     const [images, setImages] = useState(false)
     const [loading, setLoading] = useState(false)
+    const param = useParams()
+    const [onEdit, setOnEdit] = useState(false)
+
+    useEffect(() => {
+        if(param.id){
+            setOnEdit(true)
+            categorys.forEach(category => {
+                if(category._id === param.id){
+                    setCategory(category)
+                    setImages(category.images)
+                }
+            })
+            
+        }else{
+            setOnEdit(false)
+            setCategory(initialState)
+            setImages(false)
+        }
+    }, [param.id, categorys])
 
     const handleUpload = async e => {
         e.preventDefault()
@@ -35,10 +57,11 @@ export default function CreateCategory(){
             let formData = new FormData()
             formData.append('file', file)
             setLoading(true)
-            const res = await axios.post('http://localhost:5000/api/upload', formData)
+            const res = await axios.post('http://localhost:5000/api/upload', formData, {
+                headers: {'content-type': 'multipart/form-data'}
+            })
             setLoading(false)
             setImages(res.data)
-
         } catch (err) {
             alert(err.responce.data.msg)
         }
@@ -66,10 +89,17 @@ export default function CreateCategory(){
             if(!images) return alert("No image upload")
 
             //await axios.post('http://localhost:5000/api/category', {...category, images})
-
-            console.log(category)
-            //setImages(false)
-            //setCategory(initialState)
+            if(onEdit){
+                await axios.put(`http://localhost:5000/api/category/${category._id}`, {...category, images})
+                setImages(false)
+                setCategory(initialState)
+                alert("Category Updated...")
+            }else{
+                await axios.post('http://localhost:5000/api/category', {...category, images})
+                setImages(false)
+                setCategory(initialState)
+                alert("Category Added...")
+            }
         } catch (err) {
             alert("error occur")
         }
@@ -100,21 +130,40 @@ export default function CreateCategory(){
                     }
                 </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="row">
-                        <label htmlFor="category_id">Category ID</label>
-                        <input type="text" name="category_id" id="productid" required value={category.category_id} 
-                            onChange={handleChangeInput}/>
-                    </div>
+                <div className="main-form">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-row">
+                            <label htmlFor="category_id">Category ID</label>
+                            <input type="text" name="category_id" id="productid" required value={category.category_id} 
+                                onChange={handleChangeInput}/>
+                        </div>
 
-                    <div className="row">
-                        <label htmlFor="categoryName">Category Name</label>
-                        <input type="text" name="categoryName" id="categoryName" required value={category.categoryName} 
-                            onChange={handleChangeInput}/>
-                    </div>
-                    
-                <button type="submit">Save</button>
-            </form>
+                        <div className="form-row">
+                            <label htmlFor="categoryName">Category Name</label>
+                            <input type="text" name="categoryName" id="categoryName" required value={category.categoryName} 
+                                onChange={handleChangeInput}/>
+                        </div>
+
+                        <div className="form-row">
+                            <label htmlFor="status">Status</label>
+                            {/*<input type="text" name="categoryName" id="categoryName" required value={category.categoryName} 
+                                onChange={handleChangeInput}/>*/}
+                            <select name="status" onChange={handleChangeInput} >
+                                <option>Select One</option>
+                                <option value="Available">Available</option>
+                                <option value="Not Available">Not Available</option>
+                            </select>
+                            {/**
+                             * <select name="dutyType" onChange={onChangeInput}>
+                                    <option value="">Select...</option>
+                                    <option value="fullTime">Full Time</option>
+                                    <option value="partTime">Part Time</option>
+                                </select>
+                            */}
+                        </div>
+                        <button type="submit">{onEdit? "Update" : "Save"}</button>
+                    </form>
+                </div>
             </div>
 
         </div>
