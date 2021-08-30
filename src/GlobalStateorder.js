@@ -2,23 +2,26 @@ import React, {createContext, useState} from 'react'
 import FoodsAPI from './api/FoodsAPI'
 import OrdersAPI from './api/OrdersAPI'
 
-export const GlobalState = createContext()
+
+export const GlobalStateorder = createContext()
 
 export const DataProvider = ({children}) => {
     const [token, setToken] = useState(false)
      
-    // FoodsAPI()
+    
+
+    // OrdersApi
     const state = {
         token: [token, setToken],
+        ordersAPI: OrdersAPI(),
         foodsAPI: FoodsAPI()
     }
 
-    
 
     return(
-        <GlobalState.Provider value={state} >
+        <GlobalStateorder.Provider value={state}>
             {children}
-        </GlobalState.Provider>
+        </GlobalStateorder.Provider>
         
     )
 }
