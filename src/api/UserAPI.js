@@ -3,6 +3,7 @@ import axios from 'axios'
 
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
+    const [cart, setCart] = useState([])
 
     useEffect(() =>{
         if(token){
@@ -21,6 +22,14 @@ function UserAPI(token) {
         }
 
     },[token])
+
+    const addCart = async (food) => {
+        if(!isLogged) return alert("Please login to buy")
+
+        const check = cart.every(item =>{
+            return item._id !== food._id
+        })
+    }
     return {
         isLogged: [isLogged, setIsLogged]
     }
