@@ -13,3 +13,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.mainPages{
+  padding-left: 300px;
+}
+/*--------------------Reports-------------------*/
+@import url("./Components/Cashier/Reports/ReportsList/Reports.css");
+
+/*--------------------Category List-------------------*/
+@import url("./Components/Cashier/Categories/viewCategoryList.css");
+
+/*--------------------Create Report-------------------*/
+@import url("./Components/Cashier/Reports/CreateReport/CreateReport.css");
+

@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import * as FaIcons from 'react-icons/fa'
-import {SidebarData} from './SidebarData'
-import SubMenu from './SubMenu'
+import {CashierSidebarData} from './CashierSidebarData'
+import SubMenu from './CashierSubMenu'
 
 const Nav = styled.div`
     background: #15171c;
@@ -40,7 +40,7 @@ const SidebarWrap = styled.div`
     width: 100%;
 `;
 
-function SideBar() {
+function CashierSideBar() {
     const [sidebar, setSidebar] = useState(true)
 
     const showSidebar = () => setSidebar(!sidebar)
@@ -59,7 +59,7 @@ function SideBar() {
                     Explores CAFE
                 </NavIcon>
                 <div style={{paddingTop: "20px"}}> 
-                    {SidebarData.map((item, index) => {
+                    {CashierSidebarData.map((item, index) => {
                         return <SubMenu item={item} key={index} />;
                     })}
                 </div>
@@ -69,4 +69,4 @@ function SideBar() {
     )
 }
 
-export default SideBar
+export default CashierSideBar
